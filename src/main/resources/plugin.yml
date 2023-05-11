@@ -1,0 +1,10 @@
+name: SmartBlackboard
+version: '${project.version}'
+main: de.lcpcraft.lucas.smartblackboard.SmartBlackboard
+api-version: 1.19
+authors: [ LakyLuc ]
+commands:
+  blackboard:
+    description: SmartBlackboard command
+    aliases:
+      - bboard
