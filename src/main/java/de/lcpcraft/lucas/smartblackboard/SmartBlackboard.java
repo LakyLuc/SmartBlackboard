@@ -24,6 +24,7 @@ import java.util.Objects;
 public final class SmartBlackboard extends JavaPlugin {
 
     public static final String MODRINTH_ID = "hNkktef2";
+    public static final String MODRINTH_LINK = "https://modrinth.com/plugin/smartblackboard/version/%version%";
     public static SmartBlackboard plugin;
     public static File configFile;
     public static File postsFile;
