@@ -30,19 +30,19 @@ public class BookListener implements Listener {
                             content.setAmount(0);
                     }
                 } else
-                    e.getPlayer().sendMessage(Message.prefix + "§cYou have to sign the book with your title to create a new post.");
+                    e.getPlayer().sendMessage(Message.prefix + Message.signToCreate);
             } else {
                 long timestamp = Long.parseLong(data);
                 if (e.isSigning()) {
                     if (!BoardManager.editPost(e.getPlayer(), timestamp, e.getNewBookMeta().getPages().get(0)))
-                        e.getPlayer().sendMessage(Message.prefix + "§cYou can't edit this post.");
+                        e.getPlayer().sendMessage(Message.prefix + Message.noEdit);
                     for (ItemStack content : e.getPlayer().getInventory().getContents()) {
                         if (content != null && content.getItemMeta() != null
                                 && content.getItemMeta().getPersistentDataContainer().has(new NamespacedKey(SmartBlackboard.plugin, "blackboard")))
                             content.setAmount(0);
                     }
                 } else
-                    e.getPlayer().sendMessage(Message.prefix + "§cYou have to sign the book to edit the post.");
+                    e.getPlayer().sendMessage(Message.prefix + Message.signToEdit);
             }
         }
     }

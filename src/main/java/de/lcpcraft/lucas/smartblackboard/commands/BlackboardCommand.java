@@ -21,27 +21,27 @@ public class BlackboardCommand implements CommandExecutor {
                 try {
                     long index = Long.parseLong(strings[1]);
                     if (BoardManager.deletePost(p, index))
-                        p.sendMessage(Component.text(Message.prefix + "§aSuccessfully deleted post ")
-                                .append(Component.text("§7[§eOpen blackboard§7]")
+                        p.sendMessage(Component.text(Message.prefix + Message.postDeleted + " ")
+                                .append(Component.text(Message.clickToOpen)
                                         .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard"))));
-                    else p.sendMessage(Component.text(Message.prefix + "§cError while deleting post ")
-                            .append(Component.text("§7[§eOpen blackboard§7]")
+                    else p.sendMessage(Component.text(Message.prefix + Message.error + " ")
+                            .append(Component.text(Message.clickToOpen)
                                     .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard"))));
                 } catch (NumberFormatException e) {
-                    p.sendMessage(Component.text(Message.prefix + "§cError while deleting post ")
-                            .append(Component.text("§7[§eOpen blackboard§7]")
+                    p.sendMessage(Component.text(Message.prefix + Message.error + " ")
+                            .append(Component.text(Message.clickToOpen)
                                     .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard"))));
                 }
             } else if (strings.length == 2 && strings[0].equalsIgnoreCase("edit")) {
                 try {
                     long index = Long.parseLong(strings[1]);
                     if (!BoardManager.editPost(p, index))
-                        p.sendMessage(Component.text(Message.prefix + "§cError while editing post ")
-                                .append(Component.text("§7[§eOpen blackboard§7]")
+                        p.sendMessage(Component.text(Message.prefix + Message.error + " ")
+                                .append(Component.text(Message.clickToOpen)
                                         .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard"))));
                 } catch (NumberFormatException e) {
-                    p.sendMessage(Component.text(Message.prefix + "§cError while editing post ")
-                            .append(Component.text("§7[§eOpen blackboard§7]")
+                    p.sendMessage(Component.text(Message.prefix + Message.error + " ")
+                            .append(Component.text(Message.clickToOpen)
                                     .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard"))));
                 }
             } else BoardManager.openBoard(p);

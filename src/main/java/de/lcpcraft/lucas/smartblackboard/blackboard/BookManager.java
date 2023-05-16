@@ -20,7 +20,7 @@ public class BookManager {
         builder.title(Component.text("Blackboard"));
         builder.author(Component.text("SmartBlackboard"));
         Component header = Component.text("§l§nBlackboard\n§7" + posts.size() + " posts\n\n");
-        header = header.append(Component.text("§8[Click here to create a new post]")
+        header = header.append(Component.text(Message.clickToCreate)
                 .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard create")));
         builder.addPage(header);
         for (Post post : posts)
@@ -52,7 +52,7 @@ public class BookManager {
             player.getInventory().setItemInOffHand(book);
         else {
             player.getInventory().addItem(book);
-            player.sendMessage(Message.prefix + "§cYou have no free hand to hold the book. It has been added to your inventory.");
+            player.sendMessage(Message.prefix + Message.noFreeHand);
         }
     }
 }

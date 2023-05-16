@@ -36,8 +36,8 @@ public class BoardManager {
             }
         });
         Bukkit.getOnlinePlayers().forEach(p ->
-                p.sendMessage(Component.text(Message.prefix + "§a" + player.getName() + " created a new post on the blackboard ")
-                        .append(Component.text("§7[§eClick here to open§7]")
+                p.sendMessage(Component.text(Message.prefix + Message.postCreated.replace("%player%", player.getName() + " "))
+                        .append(Component.text(Message.clickToOpen)
                                 .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard")))));
     }
 
@@ -82,8 +82,8 @@ public class BoardManager {
                     }
                 });
                 Bukkit.getOnlinePlayers().forEach(p ->
-                        p.sendMessage(Component.text(Message.prefix + "§a" + player.getName() + " edited a post on the blackboard ")
-                                .append(Component.text("§7[§eClick here to open§7]")
+                        p.sendMessage(Component.text(Message.prefix + Message.postEdited.replace("%player%", player.getName() + " "))
+                                .append(Component.text(Message.clickToOpen)
                                         .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard")))));
                 return true;
             }
