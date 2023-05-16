@@ -29,11 +29,22 @@ public class BookManager {
     }
 
     public static void openWritableBook(Player player) {
+        openWritableBook(player, null);
+    }
+
+    public static void openWritableBook(Player player, Post post) {
         ItemStack book = new ItemStack(Material.WRITABLE_BOOK);
         BookMeta meta = (BookMeta) book.getItemMeta();
-        meta.addPages(Component.text("Replace this text with your post description and sign the book with your title to create a new post."));
-        meta.getPersistentDataContainer().set(new NamespacedKey(SmartBlackboard.plugin, "blackboard"), PersistentDataType.STRING, "create");
-        meta.displayName(Component.text("Blackboard - Create"));
+        if (post != null) {
+            meta.addPages(Component.text(post.getDescription()));
+            meta.getPersistentDataContainer().set(new NamespacedKey(SmartBlackboard.plugin, "blackboard"),
+                    PersistentDataType.STRING, String.valueOf(post.getTimestamp()));
+            meta.displayName(Component.text("Blackboard - Edit: " + post.getTitle()));
+        } else {
+            meta.addPages(Component.text("Replace this text with your post description and sign the book with your title to create a new post."));
+            meta.getPersistentDataContainer().set(new NamespacedKey(SmartBlackboard.plugin, "blackboard"), PersistentDataType.STRING, "create");
+            meta.displayName(Component.text("Blackboard - Create"));
+        }
         book.setItemMeta(meta);
         if (player.getInventory().getItemInMainHand().getType() == Material.AIR)
             player.getInventory().setItemInMainHand(book);

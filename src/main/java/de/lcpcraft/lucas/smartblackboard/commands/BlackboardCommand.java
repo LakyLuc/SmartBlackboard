@@ -32,6 +32,18 @@ public class BlackboardCommand implements CommandExecutor {
                             .append(Component.text("§7[§eOpen blackboard§7]")
                                     .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard"))));
                 }
+            } else if (strings.length == 2 && strings[0].equalsIgnoreCase("edit")) {
+                try {
+                    long index = Long.parseLong(strings[1]);
+                    if (!BoardManager.editPost(p, index))
+                        p.sendMessage(Component.text(Message.prefix + "§cError while editing post ")
+                                .append(Component.text("§7[§eOpen blackboard§7]")
+                                        .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard"))));
+                } catch (NumberFormatException e) {
+                    p.sendMessage(Component.text(Message.prefix + "§cError while editing post ")
+                            .append(Component.text("§7[§eOpen blackboard§7]")
+                                    .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard"))));
+                }
             } else BoardManager.openBoard(p);
             return true;
         }

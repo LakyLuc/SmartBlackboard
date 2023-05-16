@@ -57,6 +57,40 @@ public class BoardManager {
         return false;
     }
 
+    public static boolean editPost(Player p, long index) {
+        for (Post post : posts) {
+            if (post.getTimestamp() == index
+                    && (post.getAuthor().toString().equals(p.getUniqueId().toString()) || p.hasPermission("blackboard.admin"))) {
+                BookManager.openWritableBook(p, post);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean editPost(Player player, long index, String description) {
+        for (Post post : posts) {
+            if (post.getTimestamp() == index
+                    && (post.getAuthor().toString().equals(player.getUniqueId().toString()) || player.hasPermission("blackboard.admin"))) {
+                post.setDescription(description);
+                String json = new Gson().toJson(posts);
+                Bukkit.getScheduler().runTaskAsynchronously(SmartBlackboard.plugin, () -> {
+                    try {
+                        Files.writeString(SmartBlackboard.postsFile.toPath(), json);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                Bukkit.getOnlinePlayers().forEach(p ->
+                        p.sendMessage(Component.text(Message.prefix + "§a" + player.getName() + " edited a post on the blackboard ")
+                                .append(Component.text("§7[§eClick here to open§7]")
+                                        .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard")))));
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void loadPosts(List<Post> posts) {
         BoardManager.posts.clear();
         BoardManager.posts.addAll(posts);

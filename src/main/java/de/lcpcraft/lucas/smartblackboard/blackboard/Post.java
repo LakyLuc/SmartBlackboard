@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Post {
     private final String title;
     private final UUID author;
-    private final String description;
+    private String description;
     private final long timestamp;
 
     public Post(String title, UUID author, String description, long timestamp) {
@@ -26,9 +26,11 @@ public class Post {
         String authorName = Bukkit.getOfflinePlayer(author).getName();
         Component delete = Component.text("§7[§cDelete§7]")
                 .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard delete " + timestamp));
+        Component edit = Component.text("§7[§eEdit§7]")
+                .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard edit " + timestamp));
         return Component.text(title + " ", NamedTextColor.GOLD)
-                .append(Component.text("(" + authorName + " at " + formatTime() + ") ", NamedTextColor.GRAY))
-                .append(owner ? delete : Component.empty())
+                .append(Component.text("(" + authorName + " at " + formatTime() + ")", NamedTextColor.GRAY))
+                .append(owner ? Component.text(" ").append(edit).append(Component.text(" ")).append(delete) : Component.empty())
                 .append(Component.text("\n" + description, NamedTextColor.BLACK));
     }
 
@@ -42,5 +44,17 @@ public class Post {
 
     public UUID getAuthor() {
         return author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
