@@ -22,14 +22,14 @@ public class Updater {
             Bukkit.getConsoleSender().sendMessage(Message.prefix + "§cFailed to check for updates!");
             return;
         }
-        String pluginVersion = Bukkit.getPluginManager().getPlugin("SimpleNick").getPluginMeta().getVersion();
+        String pluginVersion = Bukkit.getPluginManager().getPlugin("SmartBlackboard").getPluginMeta().getVersion();
         if (!latestVersion.version_number.equals(pluginVersion)) {
             Updater.latestVersion = latestVersion;
-            Bukkit.getConsoleSender().sendMessage(Message.prefix + "§aA new version of SimpleNick is available: §e" + latestVersion.version_number);
+            Bukkit.getConsoleSender().sendMessage(Message.prefix + "§aA new version of SmartBlackboard is available: §e" + latestVersion.version_number);
             Bukkit.getConsoleSender().sendMessage(Message.prefix + "§aDownload it at §e"
                     + SmartBlackboard.MODRINTH_LINK.replace("%version%", latestVersion.version_number));
             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-                if (onlinePlayer.hasPermission("simplenick.update"))
+                if (onlinePlayer.hasPermission("smartblackboard.update"))
                     sendUpdateMessage(onlinePlayer);
             }
         }
@@ -40,7 +40,7 @@ public class Updater {
             Component link = Component.text("Modrinth").clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL,
                             SmartBlackboard.MODRINTH_LINK.replace("%version%", latestVersion.version_number)))
                     .hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, Component.text("§7Änderungsliste:\n" + latestVersion.changelog)));
-            Component message = Component.text(Message.prefix + "§eEine neue Version von SimpleNick ist verfügbar ("
+            Component message = Component.text(Message.prefix + "§eEine neue Version von SmartBlackboard ist verfügbar ("
                     + latestVersion.version_number + "). Download auf ").append(link).append(Component.text("§e verfügbar."));
             player.sendMessage(message);
         }
