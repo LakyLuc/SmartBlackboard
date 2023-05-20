@@ -17,8 +17,7 @@ command.
 - Sign the book with the title of your post
 - The post will be added to the blackboard
 
-Posts can be edited and deleted by the author or with the permission `smartblackboard.admin` using the "Edit" and "
-Delete" button.
+Posts can be edited and deleted by the author or with the permission `smartblackboard.admin` using the "Edit" and "Delete" button.
 
 Players with the permission `smartblackboard.update` will be notified when a new version of the plugin is available.
 
