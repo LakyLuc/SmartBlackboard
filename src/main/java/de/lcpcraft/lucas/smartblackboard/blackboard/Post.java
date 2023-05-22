@@ -26,7 +26,7 @@ public class Post {
         String authorName = Bukkit.getOfflinePlayer(author).getName();
         Component delete = Component.text("§7[§cDelete§7]")
                 .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard delete " + timestamp));
-        Component edit = Component.text("§7[§eEdit§7]")
+        Component edit = Component.text("§7[§2Edit§7]")
                 .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/blackboard edit " + timestamp));
         return Component.text(title + " ", NamedTextColor.GOLD)
                 .append(Component.text("(" + authorName + " at " + formatTime() + ")", NamedTextColor.GRAY))
